@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col"></div>
+    <div class="col-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="text-dark text-muted">Set Your Campaign Budget and Duration</h4>
+          
+          <input type="text" [(ngModel)]="campaignName" class="form-control mb-3" placeholder="Campaign Name">
+          <input type="number" [(ngModel)]="dailyBudget" class="form-control mb-3" placeholder="Daily Budget">
+          <input type="date" [(ngModel)]="startDate" class="form-control mb-3" placeholder="Start Date">
+          <input type="date" [(ngModel)]="endDate" class="form-control mb-3" placeholder="End Date">
+          
+          <button (click)="saveCampaign()" class="btn btn-info">Save Campaign</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelCreation()">Cancel</button>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

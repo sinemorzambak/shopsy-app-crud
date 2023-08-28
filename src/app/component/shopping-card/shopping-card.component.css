@@ -1,0 +1,27 @@
+.card-body {
+    border: 2px solid black; 
+    border-radius: 10px; 
+    margin: 10px; 
+  }
+  
+  .card-body  {
+    padding: 20px; 
+  }
+  
+  .card-body .btn-primary {
+    margin-top: 10px; 
+  }
+  
+  .campaign-link{
+    width: 250px;
+    word-wrap: break-word;
+  }
+
+  .btn{
+    background: gray;
+  }
+  
+  .btn-primary {
+    width: 290px;
+    word-wrap: break-word;
+  }
