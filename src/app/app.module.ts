@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; 
-
+import { localStorageSyncReducer } from './store/localStorageSync.reducer'; 
 
 
 
@@ -46,11 +46,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ReactiveFormsModule,
     AngularFirestoreModule,
     FormsModule,
-    StoreModule.forRoot({ campaign: campaignReducer }) ,
+
+    StoreModule.forRoot({
+      campaign: campaignReducer,
+      
+    }, { metaReducers: [localStorageSyncReducer] }),
+
+
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production 
     }),
+    
     EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebase),
   ],
