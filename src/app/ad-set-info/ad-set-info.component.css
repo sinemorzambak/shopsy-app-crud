@@ -1,0 +1,46 @@
+.product-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.product-column {
+  flex: 1;
+}
+.product-thumbnail {
+  width: 80px; 
+  height: 80px;
+  margin-right: 10px;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-price {
+  color: orange;
+}
+
+.product-divider {
+  margin: 0 5px;
+  color: #666;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+
+.custom-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 7px;
+  width: 100%;
+}

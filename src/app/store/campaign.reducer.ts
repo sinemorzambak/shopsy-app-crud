@@ -1,8 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { createCampaign } from './campaign.actions';
-import { AppState } from './app.state'; 
+import { setCampaignInfo } from '../store/campaign.actions';
 
-export const initialState: AppState = {
+export const initialState = {
   campaignState: {
     campaignInfo: null
   }
@@ -10,7 +9,7 @@ export const initialState: AppState = {
 
 export const campaignReducer = createReducer(
   initialState,
-  on(createCampaign, (state, { campaignInfo }) => {
-    return { ...state, campaignState: { campaignInfo } };
+  on(setCampaignInfo, (state, { campaignInfo }) => {
+    return { ...state, campaignState: { ...state.campaignState, campaignInfo } };
   })
 );

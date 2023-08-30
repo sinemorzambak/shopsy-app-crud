@@ -1,0 +1,1 @@
+// effect , store'dan gelen modelleri izler, observable ın aksiyonlarını storedan dispatch eder. 
