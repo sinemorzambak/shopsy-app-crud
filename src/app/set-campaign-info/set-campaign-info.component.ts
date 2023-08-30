@@ -2,6 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { createCampaign } from '../store/campaign.actions';
 import { AppState } from '../store/app.state';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-set-campaign-info',
@@ -15,19 +17,23 @@ export class SetCampaignInfoComponent {
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
-  saveCampaign() {
+  continueNextStep() {
     const campaignInfo = {
       campaignName: this.campaignName,
       dailyBudget: this.dailyBudget,
       startDate: this.startDate,
       endDate: this.endDate
     };
-
+    
+    console.log('Dispatching createCampaign action with:', campaignInfo); 
     this.store.dispatch(createCampaign({ campaignInfo }));
     this.clearInputFields();
+  
+    this.router.navigate(['/ad-set-info']);
   }
+  
 
   cancelCreation() {
     this.clearInputFields();
@@ -40,3 +46,5 @@ export class SetCampaignInfoComponent {
     this.endDate = '';
   }
 }
+
+

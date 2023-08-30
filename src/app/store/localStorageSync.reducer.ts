@@ -4,6 +4,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
   return (state, action) => {
     if (action.type === INIT) {
       const storedState = localStorage.getItem('appState');
+      console.log('Stored state from localStorage:', storedState); 
       if (storedState) {
         return JSON.parse(storedState);
       }

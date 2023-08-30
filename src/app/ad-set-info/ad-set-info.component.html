@@ -1,0 +1,44 @@
+<div class="ad-set-info-container">
+  <h3 class="section-title">Settings</h3>
+
+  <h3 class="section-title">Ad Group Name</h3>
+  <input type="text" [(ngModel)]="adGroupName" />
+
+  <div class="product-container">
+      <div class="product-column">
+          <h4 class="section-title">Products</h4>
+          <ul>
+              <li *ngFor="let product of availableProducts">
+                  <div class="product-item">
+                      <img [src]="product['product-image-url']" alt="{{ product['product-name'] }}" />
+                      <div class="product-details">
+                          <span class="product-name">{{ product['product-name'] }}</span>
+                          <span class="product-price">{{ product['product-price'] }}</span>
+                          <span class="product-stock">{{ product['product-stock'] }}</span>
+                      </div>
+                      <button (click)="addProduct(product)">Add</button>
+                  </div>
+              </li>
+          </ul>
+      </div>
+      <div class="product-column">
+          <h4 class="section-title">Selected Products</h4>
+          <ul>
+              <li *ngFor="let product of selectedProducts">
+                  <div class="product-item">
+                      <img [src]="product['product-image-url']" alt="{{ product['product-name'] }}" />
+                      <div class="product-details">
+                          <span class="product-name">{{ product['product-name'] }}</span>
+                          <span class="product-price">{{ product['product-price'] }}</span>
+                          <span class="product-stock">{{ product['product-stock'] }}</span>
+                      </div>
+                      <button (click)="removeProduct(product)">Remove</button>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+  <button class="continue-button" (click)="continueNextStep()">Continue</button>
+  <button class="cancel-button" (click)="cancel()">Cancel</button>
+</div>
