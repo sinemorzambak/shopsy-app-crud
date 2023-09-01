@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { setCampaignInfo } from '../store/campaign.actions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router'; // Router ekledik
+
 
 interface Product {
   'product-name': string;
@@ -21,7 +23,7 @@ export class AdSetInfoComponent implements OnInit {
   availableProducts: Product[] = [];
   selectedProducts: Product[] = [];
 
-  constructor(private store: Store<AppState>, private firestore: AngularFirestore) {}
+  constructor(private store: Store<AppState>, private firestore: AngularFirestore,  private router: Router ) {}
 
   ngOnInit() {
     this.firestore
@@ -49,6 +51,7 @@ export class AdSetInfoComponent implements OnInit {
       selectedProducts: this.selectedProducts,
     };
     this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
+    this.router.navigate(['/add-keywords']);
   }
 
   addProduct(product: Product) {
