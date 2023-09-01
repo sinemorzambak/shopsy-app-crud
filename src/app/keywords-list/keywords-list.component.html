@@ -1,7 +1,14 @@
 <!-- keywords-list.component.html -->
 
 <h2>Keywords List</h2>
-<table class="table">
+
+<div class="search-bar">
+  <input type="text" [(ngModel)]="keywordSearch" placeholder="Keyword Search" />
+  <button class="btn btn-primary" (click)="searchKeywords()">Search</button>
+  <button class="btn btn-success" (click)="navigateToAddKeywords()">Add Keywords</button>
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Keyword</th>
@@ -11,11 +18,24 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let keyword of keywords">
+    <tr *ngFor="let keyword of filteredKeywords">
       <td>{{ keyword.keyword }}</td>
-      <td>{{ keyword.matchType }}</td>
-      <td>{{ keyword.bid }}</td>
-      <td><button (click)="removeKeyword(keyword)">Remove</button></td>
+      <td>
+        <select class="form-control" [(ngModel)]="keyword.matchType" (change)="setMatchType(keyword)">
+          <option value="exact">Exact</option>
+          <option value="phrase">Phrase</option>
+          <option value="broad">Broad</option>
+        </select>
+      </td>
+      <td>
+        <input type="number" class="form-control" [(ngModel)]="keyword.bid" (change)="setBid(keyword)" />
+      </td>
+      <td><button class="btn btn-danger" (click)="removeKeyword(keyword)">Remove</button></td>
     </tr>
   </tbody>
 </table>
+
+<div class="button-bar">
+  <button class="btn btn-primary" (click)="continueNextStep()">Continue</button>
+  <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+</div>
