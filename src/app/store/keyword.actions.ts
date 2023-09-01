@@ -1,4 +1,3 @@
-
 import { createAction, props } from '@ngrx/store';
 
 export const addKeyword = createAction(
@@ -7,6 +6,6 @@ export const addKeyword = createAction(
 );
 
 export const removeKeyword = createAction(
-  '[Keyword] Add Keyword',
+  '[Keyword] Remove Keyword',
   props<{ keyword: any }>()
 );
