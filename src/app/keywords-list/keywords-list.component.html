@@ -1,0 +1,21 @@
+<!-- keywords-list.component.html -->
+
+<h2>Keywords List</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Match Type</th>
+      <th>Bid</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let keyword of keywords">
+      <td>{{ keyword.keyword }}</td>
+      <td>{{ keyword.matchType }}</td>
+      <td>{{ keyword.bid }}</td>
+      <td><button (click)="removeKeyword(keyword)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>

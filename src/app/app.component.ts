@@ -17,11 +17,12 @@ export class AppComponent implements OnDestroy {
         console.log('Navigation started'); 
       }
       if (event instanceof NavigationEnd) {
-        console.log('Navigation ended'); 
-
-        
+        console.log('Navigation ended');
+      
         this.store.select(state => state.campaignState.campaignInfo).subscribe(campaignInfo => {
-          console.log('Current campaignInfo from Redux store:', campaignInfo);
+          if (campaignInfo) { 
+            console.log('Current campaignInfo from Redux store:', campaignInfo);
+          }
         });
       }
     });
