@@ -1,4 +1,3 @@
-// add-keywords.component.ts
 
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -27,12 +26,10 @@ export class AddKeywordsComponent {
       };
       this.store.dispatch(addKeyword({ keyword: newKeyword }));
 
-      // Input alanlarını temizleyelim
       this.keyword = '';
       this.matchType = '';
       this.bid = 0;
 
-      // Keywords-list sayfasına yönlendirme
       this.router.navigate(['/keywords-list']);
     }
   }

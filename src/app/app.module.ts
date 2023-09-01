@@ -13,7 +13,7 @@ import { SetCampaignInfoContainerComponent } from './set-campaign-info-container
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { campaignReducer } from './store/campaign.reducer';
-import { keywordReducer } from './store/keyword.reducer'; // Keyword reducer'ı ekledik
+import { keywordReducer } from './store/keyword.reducer'; 
 import { EffectsModule } from '@ngrx/effects';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +47,7 @@ import { KeywordsListComponent } from './keywords-list/keywords-list.component';
     StoreModule.forRoot(
       {
         campaign: campaignReducer,
-        keywordState: keywordReducer, // keywordState ekledik
+        keywordState: keywordReducer, 
       },
       { metaReducers: [localStorageSyncReducer] }
     ),

@@ -1,4 +1,3 @@
-// keyword.reducer.ts
 
 import { createReducer, on } from '@ngrx/store';
 import { addKeyword, removeKeyword } from './keyword.actions';

@@ -1,4 +1,3 @@
-// keywords-list.component.ts
 
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -16,14 +15,12 @@ export class KeywordsListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    // State'ten keyword'leri al
     this.store.select((state) => state.keywordState.keywords).subscribe((keywords) => {
       this.keywords = keywords;
     });
   }
 
   removeKeyword(keyword: any) {
-    // Keyword'ü state'ten kaldır
     this.store.dispatch(removeKeyword({ keyword }));
   }
 }

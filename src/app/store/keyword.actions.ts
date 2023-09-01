@@ -1,4 +1,3 @@
-// keyword.actions.ts
 
 import { createAction, props } from '@ngrx/store';
 

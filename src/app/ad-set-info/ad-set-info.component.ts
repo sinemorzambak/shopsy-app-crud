@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { setCampaignInfo } from '../store/campaign.actions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router'; // Router ekledik
+import { Router } from '@angular/router';
 
 
 interface Product {
