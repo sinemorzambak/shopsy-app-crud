@@ -20,15 +20,15 @@ export class SetCampaignInfoComponent {
   constructor(private store: Store<AppState>, private router: Router) { }
 
   continueNextStep() {
-    const campaignInfo = {
+    const createdCampaign = {
       campaignName: this.campaignName,
       dailyBudget: this.dailyBudget,
       startDate: this.startDate,
       endDate: this.endDate
     };
     
-    console.log('Dispatching createCampaign action with:', campaignInfo); 
-    this.store.dispatch(createCampaign({ campaignInfo }));
+    console.log('Dispatching createCampaign action with:', createdCampaign); 
+    this.store.dispatch(createCampaign({ createdCampaign }));
     this.clearInputFields();
   
     this.router.navigate(['/ad-set-info']);

@@ -11,17 +11,19 @@ export class CampaignListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    const localStorageData = localStorage.getItem('appState');
-    
-    if (localStorageData !== null) {
-      const parsedData = JSON.parse(localStorageData);
+    const storedCampaignState = localStorage.getItem('campaignState');
 
-      if (parsedData && parsedData.campaign) {
-        const campaignInfo = parsedData.campaign.campaignState.campaignInfo;
+    if (storedCampaignState) {
+      const campaignState = JSON.parse(storedCampaignState);
+      
+      const campaignInfo = campaignState.campaign.campaignState.campaignInfo;
+      const createdCampaign = campaignState.campaign.campaignState.createdCampaign;
+
+      if (campaignInfo && createdCampaign) {
         this.campaigns.push({
-          campaignName: campaignInfo.campaignName,
-          startDate: campaignInfo.startDate,
-          endDate: campaignInfo.endDate,
+          campaignName: createdCampaign.campaignName,
+          startDate: createdCampaign.startDate,
+          endDate: createdCampaign.endDate,
           adGroupName: campaignInfo.adGroupName,
         });
       }
