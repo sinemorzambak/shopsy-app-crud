@@ -1,41 +1,51 @@
 <!-- keywords-list.component.html -->
 
-<h2>Keywords List</h2>
+<div class="container mt-4">
+  <h2 class="mb-4">Keywords List</h2>
 
-<div class="search-bar">
-  <input type="text" [(ngModel)]="keywordSearch" placeholder="Keyword Search" />
-  <button class="btn btn-primary" (click)="searchKeywords()">Search</button>
-  <button class="btn btn-success" (click)="navigateToAddKeywords()">Add Keywords</button>
-</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="keywordSearch" [ngModelOptions]="{standalone: true}" placeholder="Keyword Search" />
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="searchKeywords()">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-success" (click)="navigateToAddKeywords()">Add Keywords</button>
+    </div>
+  </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Keyword</th>
-      <th>Match Type</th>
-      <th>Bid</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let keyword of filteredKeywords">
-      <td>{{ keyword.keyword }}</td>
-      <td>
-        <select class="form-control" [(ngModel)]="keyword.matchType" (change)="setMatchType(keyword)">
-          <option value="exact">Exact</option>
-          <option value="phrase">Phrase</option>
-          <option value="broad">Broad</option>
-        </select>
-      </td>
-      <td>
-        <input type="number" class="form-control" [(ngModel)]="keyword.bid" (change)="setBid(keyword)" />
-      </td>
-      <td><button class="btn btn-danger" (click)="removeKeyword(keyword)">Remove</button></td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Keyword</th>
+        <th>Match Type</th>
+        <th>Bid</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let keyword of filteredKeywords">
+        <td>{{ keyword.keyword }}</td>
+        <td>
+          <select class="form-control" [(ngModel)]="keyword.matchType" [ngModelOptions]="{standalone: true}" (change)="setMatchType(keyword)">
+            <option value="exact">Exact</option>
+            <option value="phrase">Phrase</option>
+            <option value="broad">Broad</option>
+          </select>
+        </td>
+        <td>
+          <input type="number" class="form-control" [(ngModel)]="keyword.bid" [ngModelOptions]="{standalone: true}" (change)="setBid(keyword)" />
+        </td>
+        <td><button class="btn btn-danger" (click)="removeKeyword(keyword)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
 
-<div class="button-bar">
-  <button class="btn btn-primary" (click)="continueNextStep()">Continue</button>
-  <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  <div class="text-center mt-4">
+    <button class="btn btn-primary" (click)="continueNextStep()">Continue</button>
+    <button class="btn btn-secondary ml-2" (click)="cancel()">Cancel</button>
+  </div>
 </div>

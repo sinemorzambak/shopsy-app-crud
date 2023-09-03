@@ -43,6 +43,7 @@ export class KeywordsListComponent {
   }
 
   continueNextStep() {
+    this.router.navigate(['/campaign-list']);
   }
 
   cancel() {

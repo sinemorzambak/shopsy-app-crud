@@ -6,10 +6,10 @@
         <div class="card-body">
           <h4 class="text-dark text-muted">Set Your Campaign Budget and Duration</h4>
           
-          <input type="text" [(ngModel)]="campaignName" class="form-control mb-3" placeholder="Campaign Name">
-          <input type="number" [(ngModel)]="dailyBudget" class="form-control mb-3" placeholder="Daily Budget">
-          <input type="date" [(ngModel)]="startDate" class="form-control mb-3" placeholder="Start Date">
-          <input type="date" [(ngModel)]="endDate" class="form-control mb-3" placeholder="End Date">
+          <input type="text" [(ngModel)]="campaignName"  [ngModelOptions]="{standalone: true}" class="form-control mb-3" placeholder="Campaign Name">
+          <input type="number" [(ngModel)]="dailyBudget" [ngModelOptions]="{standalone: true}" class="form-control mb-3" placeholder="Daily Budget">
+          <input type="date" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" class="form-control mb-3" placeholder="Start Date">
+          <input type="date" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" class="form-control mb-3" placeholder="End Date">
           
           <button (click)="continueNextStep()" class="btn btn-info">Continue Next Step</button>
           <button type="button" class="btn btn-secondary" (click)="cancelCreation()">Cancel</button>

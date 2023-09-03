@@ -10,14 +10,14 @@
                         </div>
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label">Email</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email"> 
+                          <input type="email" class="form-control" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"> 
                           <!-- ngmodelin kullanılma sebebi iki yönlü veri bağlama (two-way data binding) mekanizması, ts. dosyasıyla iki 
                         yönlü veri bağlama, kullanıcı input girdikçe ts dosyasındaki bu değişkenler güncellenir ve 
                         bu değişkenlere değer atanır  -->
                         </div>
                         <div class="mb-3">
                           <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                          <input type="password" class="form-control" name="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
                         </div>
                         <button type="button" class="btn btn-info" (click)="login()">Login</button>
                         <div class="row">

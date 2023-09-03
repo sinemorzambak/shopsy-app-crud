@@ -1,0 +1,21 @@
+
+<h2>All Campaigns</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Campaign Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Ad Group Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let campaign of campaigns">
+      <td>{{ campaign.campaignName }}</td>
+      <td>{{ campaign.startDate }}</td>
+      <td>{{ campaign.endDate }}</td>
+      <td>{{ campaign.adGroupName }}</td>
+    </tr>
+  </tbody>
+</table>
+

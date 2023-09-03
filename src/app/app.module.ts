@@ -23,6 +23,7 @@ import { AdSetInfoComponent } from '../app/ad-set-info/ad-set-info.component';
 import { environment } from '../environments/environment';
 import { AddKeywordsComponent } from './add-keywords/add-keywords.component';
 import { KeywordsListComponent } from './keywords-list/keywords-list.component';
+import { CampaignListComponent } from './campaign-list/campaign-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { KeywordsListComponent } from './keywords-list/keywords-list.component';
     AdSetInfoComponent,
     AddKeywordsComponent,
     KeywordsListComponent,
+    CampaignListComponent,
   ],
   imports: [
     BrowserModule,
