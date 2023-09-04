@@ -1,10 +1,8 @@
-<!-- keywords-list.component.html -->
-
 <div class="container mt-4">
-  <h2 class="mb-4">Keywords List</h2>
+  <h2 class="mb-3">Keywords List</h2>
 
   <div class="row mb-3">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="input-group">
         <input type="text" class="form-control" [(ngModel)]="keywordSearch" [ngModelOptions]="{standalone: true}" placeholder="Keyword Search" />
         <div class="input-group-append">
@@ -12,8 +10,22 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 text-right">
-      <button class="btn btn-success" (click)="navigateToAddKeywords()">Add Keywords</button>
+    <div class="col-md-4">
+      <div class="btn-group" role="group">
+        <button class="btn btn-success" (click)="navigateToAddKeywords()">Add Keywords</button>
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Actions
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" routerLink="/set-campaign-info">Set Campaign Info</a></li>
+          <li><a class="dropdown-item" routerLink="/ad-set-info">Ad Set Info</a></li>
+          <li><a class="dropdown-item" routerLink="/add-keywords">Add Keywords</a></li>
+          <li><a class="dropdown-item" routerLink="/keywords-list">Keywords List</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-warning float-end" (click)="cancel()">Cancel</button>
     </div>
   </div>
 
@@ -30,7 +42,7 @@
       <tr *ngFor="let keyword of filteredKeywords">
         <td>{{ keyword.keyword }}</td>
         <td>
-          <select class="form-control" [(ngModel)]="keyword.matchType" [ngModelOptions]="{standalone: true}" (change)="setMatchType(keyword)">
+          <select class="form-select form-control-gray" [(ngModel)]="keyword.matchType" [ngModelOptions]="{standalone: true}" (change)="setMatchType(keyword)">
             <option value="exact">Exact</option>
             <option value="phrase">Phrase</option>
             <option value="broad">Broad</option>
@@ -39,13 +51,12 @@
         <td>
           <input type="number" class="form-control" [(ngModel)]="keyword.bid" [ngModelOptions]="{standalone: true}" (change)="setBid(keyword)" />
         </td>
-        <td><button class="btn btn-danger" (click)="removeKeyword(keyword)">Remove</button></td>
+        <td><button class="btn btn-danger" (click)="removeKeyword(keyword)">X</button></td>
       </tr>
     </tbody>
   </table>
 
   <div class="text-center mt-4">
     <button class="btn btn-primary" (click)="continueNextStep()">Continue</button>
-    <button class="btn btn-secondary ml-2" (click)="cancel()">Cancel</button>
   </div>
 </div>
