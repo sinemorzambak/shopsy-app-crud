@@ -1,9 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { createCampaign } from '../store/campaign.actions';
-import { AppState } from '../store/app.state';
+import { Component } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
+import { CampaignService } from '../firebase.service';
 import { Router } from '@angular/router';
-
+import { Store } from '@ngrx/store';
+import { createCampaign } from '../store/campaign.actions'; 
 
 @Component({
   selector: 'app-set-campaign-info',
@@ -17,34 +17,38 @@ export class SetCampaignInfoComponent {
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private store: Store<AppState>, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private campaignService: CampaignService,
+    private router: Router,
+    private store: Store
+  ) {}
 
   continueNextStep() {
-    const createdCampaign = {
-      campaignName: this.campaignName,
-      dailyBudget: this.dailyBudget,
-      startDate: this.startDate,
-      endDate: this.endDate
-    };
-    
-    console.log('Dispatching createCampaign action with:', createdCampaign); 
-    this.store.dispatch(createCampaign({ createdCampaign }));
-    this.clearInputFields();
-  
-    this.router.navigate(['/ad-set-info']);
+    this.authService.getCurrentUserId().then((userId) => {
+      if (userId) {
+        const createdCampaign = {
+          campaignName: this.campaignName,
+          dailyBudget: this.dailyBudget,
+          startDate: this.startDate,
+          endDate: this.endDate
+        };
+
+        this.campaignService.addCampaignToUser(userId, createdCampaign).then(() => {
+          console.log('Kampanya başarıyla eklenmiştir.');
+
+          this.store.dispatch(createCampaign({ createdCampaign }));
+
+          this.router.navigate(['/ad-set-info']);
+        }).catch((error) => {
+          console.error('Kampanya eklenirken bir hata oluştu:', error);
+        });
+      } else {
+        console.error('Kullanıcı kimliği alınamadı.');
+      }
+    });
   }
-  
 
   cancelCreation() {
-    this.clearInputFields();
-  }
-
-  private clearInputFields() {
-    this.campaignName = '';
-    this.dailyBudget = 0;
-    this.startDate = '';
-    this.endDate = '';
   }
 }
-
-

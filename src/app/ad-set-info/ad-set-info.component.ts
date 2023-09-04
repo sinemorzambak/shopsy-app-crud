@@ -4,7 +4,8 @@ import { AppState } from '../store/app.state';
 import { setCampaignInfo } from '../store/campaign.actions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../shared/auth.service';
+import { CampaignService } from '../firebase.service';
 
 interface Product {
   'product-name': string;
@@ -21,9 +22,15 @@ interface Product {
 export class AdSetInfoComponent implements OnInit {
   adGroupName: string = '';
   availableProducts: Product[] = [];
-  selectedProducts: Product[] = [];
+  selectedProducts: Product[] = []; 
 
-  constructor(private store: Store<AppState>, private firestore: AngularFirestore,  private router: Router ) {}
+  constructor(
+    private store: Store<AppState>,
+    private firestore: AngularFirestore,
+    private authService: AuthService,
+    private campaignService: CampaignService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.firestore
@@ -33,28 +40,42 @@ export class AdSetInfoComponent implements OnInit {
         this.availableProducts = products.map((product) => {
           return {
             ...product,
-            'product-image-url': 'assets/images.jpg', 
+            'product-image-url': 'assets/images.jpg',
           };
         });
       });
 
-      this.store
+    this.store
       .select((state) => state.campaignState)
       .subscribe((campaignState) => {
         if (campaignState && campaignState.campaignInfo) {
+          this.adGroupName = campaignState.campaignInfo.adGroupName || '';
           this.selectedProducts = campaignState.campaignInfo.selectedProducts || [];
         }
       });
-    
   }
 
   continueNextStep() {
-    const updatedCampaignInfo = {
-      adGroupName: this.adGroupName,
-      selectedProducts: this.selectedProducts,
-    };
-    this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
-    this.router.navigate(['/add-keywords']);
+    this.authService.getCurrentUserId().then((userId) => {
+      if (userId) {
+        const updatedCampaignInfo = {
+          adGroupName: this.adGroupName,
+          selectedProducts: this.selectedProducts,
+        };
+
+        this.campaignService.addCampaignToUser(userId, updatedCampaignInfo).then(() => {
+          console.log('Kampanya başarıyla eklenmiştir.');
+
+          this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
+
+          this.router.navigate(['/add-keywords']);
+        }).catch((error) => {
+          console.error('Kampanya eklenirken bir hata oluştu:', error);
+        });
+      } else {
+        console.error('Kullanıcı kimliği alınamadı.');
+      }
+    });
   }
 
   addProduct(product: Product) {
@@ -71,6 +92,5 @@ export class AdSetInfoComponent implements OnInit {
   }
 
   cancel() {
-    
   }
 }
