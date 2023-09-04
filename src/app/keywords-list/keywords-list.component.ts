@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
-import { addKeyword, removeKeyword } from '../store/keyword.actions';
+import {  removeKeyword } from '../store/keyword.actions';
 import { Router } from '@angular/router';
 
 @Component({

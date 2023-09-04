@@ -48,6 +48,18 @@ export class AuthService {
   isLoggedIn(): boolean {
     return localStorage.getItem('token') === 'true';
   }
+  getCurrentUserId(): Promise<string | null> {
+    return new Promise<string | null>((resolve, reject) => {
+      this.fireauth.onAuthStateChanged((user) => {
+        if (user) {
+          resolve(user.uid);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
+  
 
 
 }

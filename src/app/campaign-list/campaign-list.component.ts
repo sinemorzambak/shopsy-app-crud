@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CampaignService } from '../firebase.service';
 
 @Component({
   selector: 'app-campaign-list',
@@ -8,25 +9,40 @@ import { Component, OnInit } from '@angular/core';
 export class CampaignListComponent implements OnInit {
   campaigns: any[] = [];
 
-  constructor() {}
+  constructor(private campaignService: CampaignService) {}
 
-  ngOnInit() {
-    const storedCampaignState = localStorage.getItem('campaignState');
-
-    if (storedCampaignState) {
-      const campaignState = JSON.parse(storedCampaignState);
-      
-      const campaignInfo = campaignState.campaign.campaignState.campaignInfo;
-      const createdCampaign = campaignState.campaign.campaignState.createdCampaign;
-
-      if (campaignInfo && createdCampaign) {
-        this.campaigns.push({
-          campaignName: createdCampaign.campaignName,
-          startDate: createdCampaign.startDate,
-          endDate: createdCampaign.endDate,
-          adGroupName: campaignInfo.adGroupName,
+  async ngOnInit() {
+    try {
+      const campaigns = await this.campaignService.getCampaigns();
+      if (campaigns) {
+        campaigns.subscribe((campaignData: any[]) => {
+         
+          this.campaigns = campaignData.map((campaign) => {
+            
+            campaign.status = this.isCampaignRunning(campaign) ? 'Running' : 'Not Running';
+            return campaign;
+          });
         });
+      } else {
+        console.error('Kampanyalar alınamadı.');
       }
+    } catch (error) {
+      console.error('Kampanyalar alınırken bir hata oluştu:', error);
     }
   }
+
+
+  isCampaignRunning(campaign: any): boolean {
+    
+    if (campaign.isDeleted) {
+      return false;
+    }
+    
+
+    const currentDate = new Date();
+    const endDate = new Date(campaign.endDate);
+    return endDate >= currentDate;
+  }
+
+  
 }
