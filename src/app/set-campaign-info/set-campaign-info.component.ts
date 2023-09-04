@@ -3,7 +3,7 @@ import { AuthService } from '../shared/auth.service';
 import { CampaignService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { createCampaign } from '../store/campaign.actions'; 
+import { createCampaign } from '../store/campaign.actions';
 
 @Component({
   selector: 'app-set-campaign-info',
@@ -24,8 +24,9 @@ export class SetCampaignInfoComponent {
     private store: Store
   ) {}
 
-  continueNextStep() {
-    this.authService.getCurrentUserId().then((userId) => {
+  async continueNextStep() {
+    try {
+      const userId = await this.authService.getCurrentUserId();
       if (userId) {
         const createdCampaign = {
           campaignName: this.campaignName,
@@ -34,21 +35,21 @@ export class SetCampaignInfoComponent {
           endDate: this.endDate
         };
 
-        this.campaignService.addCampaignToUser(userId, createdCampaign).then(() => {
-          console.log('Kampanya başarıyla eklenmiştir.');
+        await this.campaignService.addCampaignToUser( createdCampaign);
+        console.log('Kampanya başarıyla eklenmiştir.');
 
-          this.store.dispatch(createCampaign({ createdCampaign }));
+        this.store.dispatch(createCampaign({ createdCampaign }));
 
-          this.router.navigate(['/ad-set-info']);
-        }).catch((error) => {
-          console.error('Kampanya eklenirken bir hata oluştu:', error);
-        });
+        this.router.navigate(['/ad-set-info']);
       } else {
         console.error('Kullanıcı kimliği alınamadı.');
       }
-    });
+    } catch (error) {
+      console.error('Kampanya eklenirken bir hata oluştu:', error);
+    }
   }
 
   cancelCreation() {
+    
   }
 }

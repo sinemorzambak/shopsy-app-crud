@@ -22,7 +22,7 @@ interface Product {
 export class AdSetInfoComponent implements OnInit {
   adGroupName: string = '';
   availableProducts: Product[] = [];
-  selectedProducts: Product[] = []; 
+  selectedProducts: Product[] = [];
 
   constructor(
     private store: Store<AppState>,
@@ -55,27 +55,27 @@ export class AdSetInfoComponent implements OnInit {
       });
   }
 
-  continueNextStep() {
-    this.authService.getCurrentUserId().then((userId) => {
+  async continueNextStep() {
+    try {
+      const userId = await this.authService.getCurrentUserId();
       if (userId) {
         const updatedCampaignInfo = {
           adGroupName: this.adGroupName,
           selectedProducts: this.selectedProducts,
         };
 
-        this.campaignService.addCampaignToUser(userId, updatedCampaignInfo).then(() => {
-          console.log('Kampanya başarıyla eklenmiştir.');
+        await this.campaignService.addCampaignToUser( updatedCampaignInfo);
+        console.log('Kampanya başarıyla eklenmiştir.');
 
-          this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
+        this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
 
-          this.router.navigate(['/add-keywords']);
-        }).catch((error) => {
-          console.error('Kampanya eklenirken bir hata oluştu:', error);
-        });
+        this.router.navigate(['/add-keywords']);
       } else {
         console.error('Kullanıcı kimliği alınamadı.');
       }
-    });
+    } catch (error) {
+      console.error('Kampanya eklenirken bir hata oluştu:', error);
+    }
   }
 
   addProduct(product: Product) {
@@ -92,5 +92,6 @@ export class AdSetInfoComponent implements OnInit {
   }
 
   cancel() {
+    
   }
 }
