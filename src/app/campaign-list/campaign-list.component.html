@@ -5,7 +5,7 @@
     </div>
     <div class="col-4 text-right">
       <a routerLink="/set-campaign-info" class="btn btn-primary">Create Campaign</a>
-      <div class="dropdown m-1">
+      <div class="dropdown d-inline ml-1">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
           Actions
         </button>
@@ -18,13 +18,14 @@
       </div>
     </div>
   </div>
-  
+
   <hr>
-  
+
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Campaign Name</th>
+        <th>Status</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Ad Group Name</th>
@@ -33,6 +34,7 @@
     <tbody>
       <tr *ngFor="let campaign of campaigns">
         <td>{{ campaign.campaignName }}</td>
+        <td>{{ campaign.status }}</td>
         <td>{{ campaign.startDate }}</td>
         <td>{{ campaign.endDate }}</td>
         <td>{{ campaign.adGroupName }}</td>
