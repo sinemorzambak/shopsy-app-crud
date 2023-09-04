@@ -11,9 +11,9 @@ export class SetCampaignInfoContainerComponent {
 
   constructor(private store: Store) { }
 
-  onCreateCampaign(campaignInfo: any) {
-    console.log('Received campaign information:', campaignInfo);
-    this.store.dispatch(createCampaign({ campaignInfo }));
+  onCreateCampaign(createdCampaign: any) {
+    console.log('Received campaign information:', createdCampaign);
+    this.store.dispatch(createCampaign({ createdCampaign }));
   }
 
   onCancelCreation() {

@@ -10,6 +10,7 @@ import { SetCampaignInfoContainerComponent } from './set-campaign-info-container
 import { AdSetInfoComponent } from './ad-set-info/ad-set-info.component';
 import { AddKeywordsComponent } from './add-keywords/add-keywords.component'; 
 import { KeywordsListComponent } from './keywords-list/keywords-list.component'; 
+import { CampaignListComponent } from './campaign-list/campaign-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'set-campaign-info', component: SetCampaignInfoContainerComponent },
   { path: 'ad-set-info', component: AdSetInfoComponent },
   { path: 'add-keywords', component: AddKeywordsComponent }, 
-  { path: 'keywords-list', component: KeywordsListComponent } 
+  { path: 'keywords-list', component: KeywordsListComponent } ,
+  { path: 'campaign-list', component: CampaignListComponent }, 
 ];
 
 @NgModule({

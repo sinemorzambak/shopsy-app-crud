@@ -19,11 +19,19 @@ export class AppComponent implements OnDestroy {
       if (event instanceof NavigationEnd) {
         console.log('Navigation ended');
       
-        this.store.select(state => state.campaignState.campaignInfo).subscribe(campaignInfo => {
-          if (campaignInfo) { 
-            console.log('Current campaignInfo from Redux store:', campaignInfo);
+        this.store.select(state => state.campaignState).subscribe(campaignState => {
+          console.log('Current campaignState from Redux store:', campaignState);
+          
+          if (campaignState) {
+            const campaignInfo = campaignState.campaignInfo;
+        
+            if (campaignInfo) {
+              console.log('Current campaignInfo from Redux store:', campaignInfo);
+            }
           }
         });
+        
+        
       }
     });
   }

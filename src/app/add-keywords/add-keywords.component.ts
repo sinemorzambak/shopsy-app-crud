@@ -25,4 +25,7 @@ export class AddKeywordsComponent {
 
     this.keyword = '';
   }
+  cancel(){
+    
+  }
 }

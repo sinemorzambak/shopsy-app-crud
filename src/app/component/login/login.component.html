@@ -1,38 +1,41 @@
 <div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-dark text-muted">Login</h4>
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Email</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email"> 
-                          <!-- ngmodelin kullanılma sebebi iki yönlü veri bağlama (two-way data binding) mekanizması, ts. dosyasıyla iki 
-                        yönlü veri bağlama, kullanıcı input girdikçe ts dosyasındaki bu değişkenler güncellenir ve 
-                        bu değişkenlere değer atanır  -->
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-info" (click)="login()">Login</button>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/register" style="text-decoration: none;">Need Account ? <span class="text-danger">Register</span></a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Forgot Password ? </a>
-                            </div>
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <img src="https://img.freepik.com/free-vector/login-concept-illustration_114360-4525.jpg?w=200" alt="Access Control" class="img-fluid">
+      </div>
     </div>
-</div>
+    <div class="row mt-3">
+      <div class="col"></div>
+      <div class="col-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <form>
+              <div class="mb-3 text-center">
+                <h4 class="text-dark text-muted">Login</h4>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control input-field" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+              </div>
+              
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control input-field" name="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+              </div>
+  
+              <div class="mb-3 text-end">
+                <a href="/forgot-password" class="text-primary" style="text-decoration: none;">Forgot Password?</a>
+              </div>
+              <button type="button" class="btn btn-primary btn-lg login-button" (click)="login()">Login</button>
+              <div class="mb-3 text-center">
+                <p class="text-dark">Don't have an account?</p>
+                <a href="/register" class="text-danger" style="text-decoration: none;">Sign Up</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+  

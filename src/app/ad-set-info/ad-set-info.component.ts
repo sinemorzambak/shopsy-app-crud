@@ -38,11 +38,14 @@ export class AdSetInfoComponent implements OnInit {
         });
       });
 
-    this.store
-      .select((state) => state.campaignState.campaignInfo)
-      .subscribe((campaignInfo) => {
-        this.selectedProducts = campaignInfo.selectedProducts || [];
+      this.store
+      .select((state) => state.campaignState)
+      .subscribe((campaignState) => {
+        if (campaignState && campaignState.campaignInfo) {
+          this.selectedProducts = campaignState.campaignInfo.selectedProducts || [];
+        }
       });
+    
   }
 
   continueNextStep() {

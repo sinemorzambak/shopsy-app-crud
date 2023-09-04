@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-8">
+      <h1>Campaign List</h1>
+    </div>
+    <div class="col-4 text-right">
+      <a routerLink="/set-campaign-info" class="btn btn-primary">Create Campaign</a>
+      <div class="dropdown m-1">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Actions
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" routerLink="/set-campaign-info">Set Campaign Info</a></li>
+          <li><a class="dropdown-item" routerLink="/ad-set-info">Ad Set Info</a></li>
+          <li><a class="dropdown-item" routerLink="/add-keywords">Add Keywords</a></li>
+          <li><a class="dropdown-item" routerLink="/keywords-list">Keywords List</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Campaign Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Ad Group Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let campaign of campaigns">
+        <td>{{ campaign.campaignName }}</td>
+        <td>{{ campaign.startDate }}</td>
+        <td>{{ campaign.endDate }}</td>
+        <td>{{ campaign.adGroupName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
