@@ -65,16 +65,16 @@ export class AdSetInfoComponent implements OnInit {
         };
 
         await this.campaignService.addCampaignToUser( updatedCampaignInfo);
-        console.log('Kampanya başarıyla eklenmiştir.');
+        console.log('The campaign has been successfully added.');
 
         this.store.dispatch(setCampaignInfo({ campaignInfo: updatedCampaignInfo }));
 
         this.router.navigate(['/add-keywords']);
       } else {
-        console.error('Kullanıcı kimliği alınamadı.');
+        console.error('Failed to get user ID.');
       }
     } catch (error) {
-      console.error('Kampanya eklenirken bir hata oluştu:', error);
+      console.error('An error occurred while adding the campaign:', error);
     }
   }
 
@@ -92,14 +92,14 @@ export class AdSetInfoComponent implements OnInit {
   }
 
   cancel() {
-    const confirmation = confirm('Kampanya grubu oluşturmayı iptal etmek istediğinize emin misiniz?');
+    const confirmation = confirm('Are you sure you want to cancel campaign group creation?');
 
     if (confirmation) {
       
-      this.router.navigate(['/set-ccampaign-info']);
+      this.router.navigate(['/set-campaign-info']);
     } else {
       
-      console.log('Kampanya oluşturma iptali iptal edildi.');
+      console.log('Campaign creation cancellation has been cancelled.');
     }
   }
 }

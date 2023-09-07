@@ -21,11 +21,11 @@ export class CampaignService {
           .collection('campaigns')
           .add(campaignData);
       } else {
-        console.error('Kullanıcı kimliği alınamadı.');
-        throw new Error('Kullanıcı kimliği alınamadı.');
+        console.error('Failed to get user ID.');
+        throw new Error('Failed to get user ID.');
       }
     } catch (error) {
-      console.error('Kampanya eklenirken bir hata oluştu:', error);
+      console.error('An error occurred while adding the campaign:', error);
       throw error;
     }
   }
@@ -40,11 +40,11 @@ export class CampaignService {
           .collection('campaigns')
           .valueChanges();
       } else {
-        console.error('Kullanıcı kimliği alınamadı.');
-        throw new Error('Kullanıcı kimliği alınamadı.');
+        console.error('Failed to get user ID.');
+        throw new Error('Failed to get user ID.');
       }
     } catch (error) {
-      console.error('Kampanyalar alınırken bir hata oluştu:', error);
+      console.error('An error occurred while retrieving campaigns:', error);
       throw error;
     }
   }

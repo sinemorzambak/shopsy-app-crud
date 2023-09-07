@@ -16,24 +16,22 @@ export class CampaignListComponent implements OnInit {
       const campaigns = await this.campaignService.getCampaigns();
       if (campaigns) {
         campaigns.subscribe((campaignData: any[]) => {
-         
           this.campaigns = campaignData.map((campaign) => {
-            
-            campaign.status = this.isCampaignRunning(campaign) ? 'Running' : 'Not Running';
+            campaign.status = this.isCampaignRunning(campaign)
+              ? 'Running'
+              : 'Not Running';
             return campaign;
           });
         });
       } else {
-        console.error('Kampanyalar alınamadı.');
+        console.error('Failed to receive campaigns.');
       }
     } catch (error) {
-      console.error('Kampanyalar alınırken bir hata oluştu:', error);
+      console.error('An error occurred while retrieving campaigns:', error);
     }
   }
 
-
   isCampaignRunning(campaign: any): boolean {
-    
     if (campaign.isDeleted) {
       return false;
     }
@@ -41,5 +39,5 @@ export class CampaignListComponent implements OnInit {
     const currentDate = new Date();
     const endDate = new Date(campaign.endDate);
     return endDate >= currentDate;
-  }  
+  }
 }
