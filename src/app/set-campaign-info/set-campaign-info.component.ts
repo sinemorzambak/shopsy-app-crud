@@ -36,28 +36,28 @@ export class SetCampaignInfoComponent {
         };
 
         await this.campaignService.addCampaignToUser( createdCampaign);
-        console.log('Kampanya başarıyla eklenmiştir.');
+        console.log('The campaign has been successfully added.');
 
         this.store.dispatch(createCampaign({ createdCampaign }));
 
         this.router.navigate(['/ad-set-info']);
       } else {
-        console.error('Kullanıcı kimliği alınamadı.');
+        console.error('Failed to get user ID.');
       }
     } catch (error) {
-      console.error('Kampanya eklenirken bir hata oluştu:', error);
+      console.error('An error occurred while adding the campaign:', error);
     }
   }
 
   cancelCreation() {
-    const confirmation = confirm('Kampanya oluşturmayı iptal etmek istediğinize emin misiniz?');
+    const confirmation = confirm('Are you sure you want to cancel campaign creation?');
 
     if (confirmation) {
       
       this.router.navigate(['/shopping-card']);
     } else {
       
-      console.log('Kampanya oluşturma iptali iptal edildi.');
+      console.log('Campaign creation cancellation has been cancelled.');
     }
   }
 }

@@ -11,9 +11,9 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private auth: AuthService, private router: Router) {}  // burdaki constructorı authservice ve router servislerini enjekte etmek için kullanıyoruz, yönetmemizi sağlıyor. çünkü authservicede oluşturduğumuz fonksiypnları burda kullanacağız. 
+  constructor(private auth: AuthService, private router: Router) {}  
 
-  ngOnInit(): void {} //  bileşen oluşturulduğunda kullanılır.
+  ngOnInit(): void {} 
 
   login() {
     if (this.email == '') {

@@ -26,14 +26,14 @@ export class AddKeywordsComponent {
     this.keyword = '';
   }
   cancel(){
-    const confirmation = confirm('Kampanyaya kelime eklemeyi iptal etmek istediğinize emin misiniz?');
+    const confirmation = confirm('Are you sure you want to cancel adding words to the campaign?');
 
     if (confirmation) {
       
       this.router.navigate(['/ad-set-info']);
     } else {
       
-      console.log('Kelime ekleme işlemi iptal edildi.');
+      console.log('Word insertion has been cancelled.');
     }
   }
 }
