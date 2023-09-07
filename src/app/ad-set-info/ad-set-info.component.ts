@@ -92,6 +92,14 @@ export class AdSetInfoComponent implements OnInit {
   }
 
   cancel() {
-    
+    const confirmation = confirm('Kampanya grubu oluşturmayı iptal etmek istediğinize emin misiniz?');
+
+    if (confirmation) {
+      
+      this.router.navigate(['/set-ccampaign-info']);
+    } else {
+      
+      console.log('Kampanya oluşturma iptali iptal edildi.');
+    }
   }
 }
