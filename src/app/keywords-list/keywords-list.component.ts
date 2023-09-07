@@ -47,5 +47,14 @@ export class KeywordsListComponent {
   }
 
   cancel() {
+    const confirmation = confirm('Kelime listesini oluşturma işlemini iptal etmek istediğinize emin misiniz?');
+
+    if (confirmation) {
+      
+      this.router.navigate(['/add-keywords']);
+    } else {
+      
+      console.log('Kelime listesi oluşturma işlemi iptal edildi.');
+    }
   }
 }

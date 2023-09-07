@@ -26,6 +26,14 @@ export class AddKeywordsComponent {
     this.keyword = '';
   }
   cancel(){
-    
+    const confirmation = confirm('Kampanyaya kelime eklemeyi iptal etmek istediğinize emin misiniz?');
+
+    if (confirmation) {
+      
+      this.router.navigate(['/ad-set-info']);
+    } else {
+      
+      console.log('Kelime ekleme işlemi iptal edildi.');
+    }
   }
 }

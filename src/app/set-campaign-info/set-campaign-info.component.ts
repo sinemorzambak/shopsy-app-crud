@@ -50,6 +50,14 @@ export class SetCampaignInfoComponent {
   }
 
   cancelCreation() {
-    
+    const confirmation = confirm('Kampanya oluşturmayı iptal etmek istediğinize emin misiniz?');
+
+    if (confirmation) {
+      
+      this.router.navigate(['/shopping-card']);
+    } else {
+      
+      console.log('Kampanya oluşturma iptali iptal edildi.');
+    }
   }
 }

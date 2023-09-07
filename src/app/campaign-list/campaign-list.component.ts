@@ -37,12 +37,9 @@ export class CampaignListComponent implements OnInit {
     if (campaign.isDeleted) {
       return false;
     }
-    
 
     const currentDate = new Date();
     const endDate = new Date(campaign.endDate);
     return endDate >= currentDate;
-  }
-
-  
+  }  
 }

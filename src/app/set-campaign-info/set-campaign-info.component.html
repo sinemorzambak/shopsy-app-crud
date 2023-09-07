@@ -3,34 +3,73 @@
     <div class="col"></div>
     <div class="col-8">
       <div class="card shadow p-4">
-        <h4 class="text-dark text-muted">Set Your Campaign Budget and Duration</h4>
-        
+        <h4 class="text-dark text-muted">
+          Set Your Campaign Budget and Duration
+        </h4>
+
         <div class="mb-3">
           <label for="campaignName" class="form-label">Campaign Name</label>
-          <input type="text" [(ngModel)]="campaignName" [ngModelOptions]="{standalone: true}" class="form-control" id="campaignName" placeholder="Campaign Name">
+          <input
+            type="text"
+            [(ngModel)]="campaignName"
+            [ngModelOptions]="{ standalone: true }"
+            class="form-control"
+            id="campaignName"
+            placeholder="Campaign Name"
+          />
         </div>
 
         <div class="mb-3">
           <label for="dailyBudget" class="form-label">Daily Budget</label>
-          <input type="number" [(ngModel)]="dailyBudget" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" id="dailyBudget" placeholder="Budget">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="dailyBudget"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </div>
         </div>
 
         <div class="row mb-3">
           <div class="col">
             <label for="startDate" class="form-label">Start Date</label>
-            <input type="date" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" class="form-control" id="startDate">
+            <input
+              type="date"
+              [(ngModel)]="startDate"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startDate"
+            />
           </div>
           <div class="col">
             <label for="endDate" class="form-label">End Date</label>
-            <input type="date" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" class="form-control" id="endDate">
+            <input
+              type="date"
+              [(ngModel)]="endDate"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="endDate"
+            />
           </div>
         </div>
 
-        <hr class="my-4">
+        <hr class="my-4" />
 
         <div class="d-flex justify-content-between">
-          <button (click)="continueNextStep()" class="btn btn-primary">Continue Next Step</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelCreation()">Cancel</button>
+          <button (click)="continueNextStep()" class="btn btn-primary">
+            Continue Next Step
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelCreation()"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
