@@ -15,7 +15,7 @@ export class AuthService {
         localStorage.setItem('token','true');
 
         if(res.user?.emailVerified == true) {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['shopping-card']);
         } 
 
     }, err => {
@@ -37,20 +37,13 @@ export class AuthService {
   }
 
 
-  logout() {
-    this.fireauth.signOut().then( () => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    }, err => {
-      alert(err.message);
-    })
-  }
   isLoggedIn(): boolean {
     return localStorage.getItem('token') === 'true';
   }
+
   getCurrentUserId(): Promise<string | null> {
     return new Promise<string | null>((resolve, reject) => {
-      this.fireauth.onAuthStateChanged((user) => {
+      this.fireauth.onAuthStateChanged((user) => { //bu event listener
         if (user) {
           resolve(user.uid);
         } else {
@@ -60,6 +53,4 @@ export class AuthService {
     });
   }
   
-
-
 }
